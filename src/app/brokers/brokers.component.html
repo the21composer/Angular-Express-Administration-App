@@ -1,0 +1,75 @@
+<div class="content" role="main">
+  <mat-toolbar>Список брокеров</mat-toolbar>
+  <mat-grid-list cols="4" rowHeight="250px" style="padding-top: 10px;">
+    <mat-grid-tile *ngFor="let b of this.brokersService.getData()">
+      <mat-card class="card">
+        <mat-card-title>
+          <span matBadge="{{b.id}}" matBadgeOverlap="false">{{b.name}} {{b.surname}}</span>
+        </mat-card-title>
+        <mat-card-content>
+          <div>
+            <b>@{{b.nickname}}</b>
+          </div>
+          <div>
+            Баланс: <span class="mat-h2">{{b.balance}}</span>
+          </div>
+          <mat-card-actions>
+            <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Редактировать</button>
+            <mat-menu #menu="matMenu">
+              <div style="padding: 10px 15px 0 15px;" (click)="$event.stopPropagation()">
+                <mat-form-field class="example-full-width">
+                  <mat-label style="font-size: 14pt;">Баланс</mat-label>
+                  <input style="font-size: 14pt;" matInput type="number" value="{{b.balance}}" id="eb{{b.id}}">
+                </mat-form-field>
+              </div>
+              <button mat-menu-item (click)="onEdit(b.id)">
+                Сохранить
+              </button>
+            </mat-menu>
+            <button mat-stroked-button color="warn" (click)="onDelete(b.id)">
+              Удалить
+            </button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div style="padding: 30px 30px 20px 30px;">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Добавление брокера
+          </mat-panel-title>
+          <mat-panel-description>
+            Нажмите, чтобы ввести данные нового брокера
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Ник</mat-label>
+          <input style="font-size: 14pt;" matInput value="" id="i-nick">
+        </mat-form-field>
+        <span style="margin: 20px"></span>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Имя</mat-label>
+          <input style="font-size: 14pt;" matInput value="" id="i-name">
+        </mat-form-field>
+        <span style="margin: 20px"></span>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Фамилия</mat-label>
+          <input style="font-size: 14pt;" matInput value="" id="i-surname">
+        </mat-form-field>
+        <span style="margin: 20px"></span>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Баланс</mat-label>
+          <input style="font-size: 14pt;" type="number" matInput value=1000 id="i-balance">
+        </mat-form-field>
+        <span style="margin: 30px"></span>
+        <button mat-stroked-button color="primary" (click)="onAdd()">
+          Добавить
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+</div>

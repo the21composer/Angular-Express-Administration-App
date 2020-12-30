@@ -1,0 +1,111 @@
+<div class="content" role="main">
+  <mat-toolbar>Список акций</mat-toolbar>
+  <mat-grid-list cols="4" rowHeight="250px" style="padding-top: 10px;">
+    <mat-grid-tile *ngFor="let s of this.stocksService.getData()">
+      <mat-card class="card">
+        <mat-card-title>
+          <span matBadge="{{s.id}}" matBadgeOverlap="false">{{s.name}}</span>
+        </mat-card-title>
+        <mat-card-content>
+          <div>
+            Распределение: <span class="mat-h3">{{s.valueRule}}</span>
+          </div>
+          <div>
+            Начальная стоимость: <span class="mat-h2">{{s.value}}</span>
+          </div>
+          <div>
+            Максимальное изменение: <span class="mat-h3">{{s.max}}</span>
+          </div>
+          <div>
+            Число акций: <span class="mat-h2">{{s.number}}</span>
+          </div>
+          <mat-card-actions>
+            <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Редактировать</button>
+            <mat-menu #menu="matMenu">
+              <div style="padding: 10px 15px 0 15px;" (click)="$event.stopPropagation()">
+                <mat-form-field class="example-full-width">
+                  <mat-label style="font-size: 14pt;">Компания</mat-label>
+                  <input style="font-size: 14pt;" matInput value="{{s.name}}" id="e-name{{s.id}}">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label style="font-size: 14pt;">Распределение</mat-label>
+                  <select matNativeControl value="{{s.valueRule}}" id="e-rule{{s.id}}">
+                    <option value="Нормальное">Нормальное</option>
+                    <option value="Равномерное">Равномерное</option>
+                    <option value="Гамма">Гамма</option>
+                  </select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label style="font-size: 14pt;">Стоимость</mat-label>
+                  <input style="font-size: 14pt;" matInput value="{{s.value}}" type="number" min=1 id="e-value{{s.id}}">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label style="font-size: 14pt;">Макс. изменение</mat-label>
+                  <input style="font-size: 14pt;" matInput value="{{s.max}}" type="number" min=0 id="e-max{{s.id}}">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label style="font-size: 14pt;">Количество</mat-label>
+                  <input style="font-size: 14pt;" matInput value="{{s.number}}" type="number" min=1 id="e-num{{s.id}}">
+                </mat-form-field>
+              </div>
+              <button mat-menu-item (click)="onEdit(s.id)">
+                Сохранить
+              </button>
+            </mat-menu>
+            <button mat-stroked-button color="warn" (click)="onDelete(s.id)">
+              Удалить
+            </button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div style="padding: 30px 30px 20px 30px;">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Добавление акций
+          </mat-panel-title>
+          <mat-panel-description>
+            Нажмите, чтобы ввести данные новых акций
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Компания</mat-label>
+          <input style="font-size: 14pt;" matInput value="" id="i-name">
+        </mat-form-field>
+        <span style="margin: 20px"></span>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Распределение</mat-label>
+          <select matNativeControl id="i-valueRule">
+            <option value="Нормальное" selected>Нормальное</option>
+            <option value="Равномерное">Равномерное</option>
+            <option value="Гамма">Гамма</option>
+          </select>
+        </mat-form-field>
+        <span style="margin: 20px"></span>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Стоимость</mat-label>
+          <input style="font-size: 14pt;" type="number" matInput value=500 min="1" id="i-value">
+        </mat-form-field>
+        <span style="margin: 20px"></span>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Макс. изменение</mat-label>
+          <input style="font-size: 14pt;" type="number" matInput value=50 min="0" id="i-max">
+        </mat-form-field>
+        <span style="margin: 20px"></span>
+        <mat-form-field>
+          <mat-label style="font-size: 14pt;">Число акций</mat-label>
+          <input style="font-size: 14pt;" type="number" matInput value=100 min="1" id="i-number">
+        </mat-form-field>
+        <span style="margin: 30px"></span>
+        <button mat-stroked-button color="primary" (click)="onAdd()">
+          Добавить
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+</div>
+

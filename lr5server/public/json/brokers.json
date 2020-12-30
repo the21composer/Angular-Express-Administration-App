@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1",
+        "nickname": "foreveralove",
+        "name": "Александр",
+        "surname": "Облизанов",
+        "balance": 10000
+    },
+    {
+        "id": "2",
+        "nickname": "wannawin",
+        "name": "Дмитрий",
+        "surname": "Петров",
+        "balance": 2000
+    },
+    {
+        "id": "3",
+        "nickname": "wanna",
+        "name": "Петр",
+        "surname": "Иванов",
+        "balance": 4000
+    }
+]

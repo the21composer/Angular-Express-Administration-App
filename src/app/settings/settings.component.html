@@ -1,0 +1,59 @@
+<div class="content" role="main">
+  <mat-toolbar>Настройки биржи</mat-toolbar>
+  <mat-grid-list cols="4" rowHeight="280px" style="padding-top: 10px;">
+    <mat-grid-tile>
+      <mat-card class="card">
+        <mat-card-title>
+          Время начала торгов
+        </mat-card-title>
+        <mat-card-content style="padding-top: 10px;">
+          <mat-form-field class="example-full-width">
+            <mat-label style="font-size: 14pt;">Дата и время</mat-label>
+            <input style="font-size: 14pt; min-width: 210px;" type="datetime-local" value="{{settingsService.getData().startTime}}" matInput id="start">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" (click)="onEdit()">
+            Сохранить
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="card">
+        <mat-card-title>
+          Время окончания торгов
+        </mat-card-title>
+        <mat-card-content style="padding-top: 10px;">
+          <mat-form-field class="example-full-width">
+            <mat-label style="font-size: 14pt;">Дата и время</mat-label>
+            <input style="font-size: 14pt; min-width: 210px;" type="datetime-local" value="{{settingsService.getData().endTime}}" matInput id="end">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" (click)="onEdit()">
+            Сохранить
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="card">
+        <mat-card-title>
+          Интервал пересчета акций
+        </mat-card-title>
+        <mat-card-content style="padding-top: 10px;">
+          <mat-form-field class="example-full-width">
+            <mat-label style="font-size: 14pt;">Время</mat-label>
+            <input style="font-size: 14pt;" type="time" matInput value="{{settingsService.getData().interval}}" id="int">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" (click)="onEdit()">
+            Сохранить
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
